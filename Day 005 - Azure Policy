@@ -1,0 +1,32 @@
+Azure Policy - Gives the control required as a global administrator for the https://portal.azure.com/
+Accessed from - 
+    Azure Portal -> Policy -> Definitions
+Key features - 
+    Compliance and enforcement
+    Mitigation and remediation
+    Policies at scale (Inherit the policies from the main head branch) 
+Benefits - 
+    Control -   Resource deployment type
+                Resource deployment Location
+    Enforce -   Particularly required field
+                Azure Backup Plan with every deployed service.
+
+Implementing the Azure policies - 
+    Azure Dashboard ->  Search For POLICY ->   Select definitions
+Azure Policies are .json files.
+Policies are implemented as - 
+    Implementation procedure -   
+        Condition - 
+                    Such as the location where the Active directory storage is to be implemented can be fixed with the Policy tag. 
+                    For eg. if the policy is set for the user servers of INDIA only, 
+                    then the user/employee can't deploy the resources out of the Indian server.
+                    This follows the data residency procedure set by the government.
+        Effect    -
+                    If the user selects other servers then cancel the service or command.
+Azure Inbuild Policy can be implemented by ->
+    1.  Definitions 
+    2.  Assignment
+    3.  Scoping
+    4.  Evaluation
+
+    
