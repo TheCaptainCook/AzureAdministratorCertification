@@ -1,0 +1,106 @@
+Azure Policy ->
+    Azure >> Policy >> Definitions.
+Can Be written as -> .json file with a condition ->
+    if condition
+    then effect -> deny or else condition to your heart's desire
+
+Policy Assignment ->
+    Policy >> Assign
+        Select >> scope (management, subscriptions, or Resource group)
+    Wait for 30 min to assign the policy
+    GET and Evaluation Report on how many follow or do not follow that policy.
+
+Policy Evaluation ->
+    Policy -> Overview 
+    Policy -> Compliance (Report) blade
+
+Custom Policy ->
+    Sign In >> Policy >> Definitions >> Policy Definitions + >> (Open Page to create a new policy)
+        Definition Location -> Your Subscription
+        Name -> Custom Name Identifier (So, I can remember the name of it.)
+        Description -> Custom Description (So, the next Admin can understand it)
+        Category -> Create a new Category or Use an existing category
+         Sample Policy Rule -> 
+                            {
+                              "mode": "All",
+                              "policyRule": {
+                                "if": {
+                                  "not": {
+                                    "field": "location",
+                                    "in": "[parameters('allowedLocations')]"
+                                  }
+                                },
+                                "then": {
+                                  "effect": "deny"
+                                }
+                              }
+                            }
+        Click Assign
+
+Implementing Initiatives ->
+        Initiatives are the policy definitions that are premade for compliance with the organizations such as NIST, Reserve Bank of INDIA, and more.
+        Policy >> policy Definitions >> scope >> Initiatives
+        Search for the required Initiatives (For eg - Microsoft cloud security benchmark (which contains 233 policies for the tenant ) which benchmarks the security of the cloud tenant )
+        Click on Assign Initiatives +     
+        Wait for 30 min to for the initiatives to get implemented.
+
+Role-Based Access Control (RBAC) ->
+        Follows -> Least Privilege Principle -> least rights given to accomplish task
+    Concept ->
+        WHO >> WHERE >> WHAT
+        WHO >>    Security Principle
+                Who(object) is requesting access to the resource
+                Assign the role to the group >> All members of that group will inherit the role 
+        WHAT >>    Role Definition
+                List of permissions that can be assigned to the security principle
+                contains -> allowed action (Actions)
+                            not allowed actions (NotActions)
+                            scope of role
+                az role definition list >or< az role definition list --name owner
+        Where >>    Scope
+                scope describes where the permissions are being described.
+
+Assignment ->
+        combining the who, what, and where together is called as assignment.
+
+Azure Role-Based Access Control (RBAC) ->    FUNDAMENTAL RBAC ROLES
+        1.    Owner -                          Every Permission >> Can give our owner permission
+        2.    Contributor -                    Assign Roles -> NO
+                                               Modify Resources -> YES
+        3.    Reader -                         Read Resources -> YES
+        4.    User Access Administrator -      Assign Roles -> YES
+                                               Modify Resource -> NO
+Classic Administration Roles - 
+        Account Administrator -> person who signed up for the account on Azure, and also has billing access. But managing the resource management part. ONE ACCOUNT FOR account administrator
+        Service Administrator -> has access to the same components as the account administrator but handles the billing part of the account. ONE ACCOUNT FOR Service Administrator. The role is the same as the OWNER ROLE IN RBAC.
+        Co-Administrator -> role is similar to the service administrator but it cant delegate  roles as co-admin.
+
+Actions allowed ->
+        1.    * ->       All Actions
+        2.    read ->    Read permission(GET)
+        3.    write ->   Write operation (PUT)
+        4.    action ->  custom Actions (POST)
+        5.    delete ->  delete operations (DELETE)
+
+VM CREATE using Cmd Line -> https://learn.microsoft.com/en-us/cli/azure/vm?view=azure-cli-latest
+
+Resource Locks -> 
+        Resource Groups >> Click on resource Group >>  Click on Locks >> Add Locks
+        LOCKS >>
+                Lock Name >> (Any Arbitrary Name)
+                Lock Type >> Read-only (can be modified even) / Delete (Resource can't be deleted but can be modified)
+                Notes >>     NOtes for the future Network Administrator
+Required to prevent accidental modification of the production environment. 
+
+Resource Tags ->
+        Locally Arrange the resource in a group...
+        In Azure Cost Management -> Can group resources and see the specific group cost such as production costs, or testing costs.
+
+Applying tags ->
+        Tags can be applied to all such as subscriptions, resource groups, or resource levels.
+
+        
+
+                
+                
+                
