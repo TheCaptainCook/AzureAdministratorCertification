@@ -1,1 +1,39 @@
-Still editing ...
+Azure Policy ->
+    Azure >> Policy >> Definitions.
+Can Be written as -> .json file with a condition ->
+    if condition
+    then effect -> deny or else condition to your heart's desire
+
+Policy Assignment ->
+    Policy >> Assign
+        Select >> scope (management, subscriptions, or Resource group)
+    Wait for 30 min to assign the policy
+    GET and Evaluation Report on how many follow or do not follow that policy.
+
+Policy Evaluation ->
+    Policy -> Overview 
+    Policy -> Compliance (Report) blade
+
+Custom Policy ->
+    Sign In >> Policy >> Definitions >> Policy Definitions + >> (Open Page to create a new policy)
+        Definition Location -> Your Subscription
+        Name -> Custom Name Identifier (So, I can remember the name of it.)
+        Description -> Custom Description (So, the next Admin can understand it)
+        Category -> Create a new Category or Use an existing category
+        Policy Rule -> 
+            '''
+            {
+  "mode": "All",
+  "policyRule": {
+    "if": {
+      "not": {
+        "field": "location",
+        "in": "[parameters('allowedLocations')]"
+      }
+    },
+    "then": {
+      "effect": "deny"
+    }
+  }
+}
+            '''
